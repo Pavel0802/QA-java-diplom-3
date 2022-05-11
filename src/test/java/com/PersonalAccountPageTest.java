@@ -3,8 +3,6 @@ package com;
 import com.pageObject.LogInPage;
 import com.pageObject.MainPage;
 import com.pageObject.ProfilePage;
-import com.pageObject.RegisterPage;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

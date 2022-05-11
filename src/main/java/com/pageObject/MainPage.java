@@ -69,17 +69,14 @@ public class MainPage {
 
     public void clickBunButton() { //Нажатие кнопки "Булки"
         bunButton.click();
-        //return page(MainPage.class);
     }
 
     public void clickSauceButton() { //Нажатие кнопки "Соусы"
         sauceButton.click();
-        //return page(MainPage.class);
     }
 
     public void clickIngredientButton() { //Нажатие кнопки "Начинки"
         ingredientButton.click();
-        //return page(MainPage.class);
     }
 
     public boolean placeAnOrderButtonIsDisplayed() { //проверка наличия кнопки 'Оформить заказ'
@@ -95,24 +92,9 @@ public class MainPage {
         return page(MainPage.class);
     }
 
-    public void bunWait(){
-        bunButton.is(Condition.focused);
-    }
-    public boolean bunHeaderIsDisplayed() { //проверка видимости заголовка 'Булки' в конструкторе
-        return bunButton.is(Condition.exactText("Булки"));
-    }
-
-    public boolean sauceHeaderIsDisplayed() { //проверка видимости заголовка 'Соусы' в конструкторе
-        return sauceButton.is(Condition.exactText("Соусы"));
-    }
-
-    public boolean ingredientHeaderIsDisplayed() { //проверка видимости заголовка 'Начинки' в конструкторе
-        return ingredientButton.is(Condition.exactText("Начинки"));
-    }
-
-    public String textExtract() {
- String textExtract = constructorInputHeader.getText();
- return textExtract;
+    public String textExtract() { //извлечение текста активной кнопки конструктора
+        String textExtract = constructorInputHeader.getText();
+        return textExtract;
     }
 
 }

@@ -9,8 +9,6 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class LogInPage {
 
-    /*//URL сайта
-    public static final String URL = "https://stellarburgers.nomoreparties.site/login";*/
     //Заголовок Вход
     @FindBy(how = How.XPATH, using = "//h2[text()='Вход']")
     private SelenideElement entranceHeader;
@@ -30,15 +28,6 @@ public class LogInPage {
     @FindBy(how = How.CSS, using = ".Auth_link__1fOlj[href='/forgot-password']")
     private SelenideElement recoverPasswordButton;
 
-    /*//кнопка-логотип Конструктор
-    @FindBy(how = How.CSS, using = ".AppHeader_header__link__3D_hX[href='/']")
-    private SelenideElement constructorHeader;
-    //кнопка Личный Кабинет
-    @FindBy(how = How.CSS, using = ".AppHeader_header__link__3D_hX[href='/account']")
-    private SelenideElement personalAccountButton;
-    //кнопка-логотип Stellar Burger
-    @FindBy(how = How.CSS, using = ".AppHeader_header__logo__2D0X2")
-    private SelenideElement stellarBurgerHeader;*/
 
     public void setEmail(String email) { //ввод email
         emailField.setValue(email);
@@ -55,7 +44,6 @@ public class LogInPage {
 
     public void clickLogInButton() { //Нажатие кнопки "Войти"
         loginButton.click();
-        //return page(MainPage.class);
     }
 
     public RecoverPasswordPage clickRecoverPasswordButton() { //Нажатие кнопки "Восстановить пароль"
@@ -63,7 +51,7 @@ public class LogInPage {
         return page(RecoverPasswordPage.class);
     }
 
-    public MainPage loginUser(String email, String password) {
+    public MainPage loginUser(String email, String password) { //регистрация пользователя
         setEmail(email);
         setPassword(password);
         clickLogInButton();
@@ -75,18 +63,4 @@ public class LogInPage {
         return page(LogInPage.class);
     }
 
-    /*public void clickConstructorHeader() { //Нажатие кнопки "Конструктор"
-        constructorHeader.click();
-        //return page(MainPage.class);
-    }
-
-    public void clickPersonalAccountButton() { //Нажатие кнопки "Личный Кабинет"
-        personalAccountButton.click();
-        //return page(MainPage.class);
-    }
-
-    public void clickStellarBurgerHeader() { //Нажатие логотипа "Stellar Burger"
-        stellarBurgerHeader.click();
-
-    }*/
 }

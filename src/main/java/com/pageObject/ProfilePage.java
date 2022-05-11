@@ -15,15 +15,15 @@ public class ProfilePage {
     private SelenideElement profileButton;
 
 
-    public LogInPage exitProfile(){
+    public LogInPage exitProfile(){ //нажатие кнопки 'Выход' - выход из профиля
         exitButton.click();
         return page(LogInPage.class);
     }
-    public boolean visibleProfileButton(){
+    public boolean visibleProfileButton(){ //проверка наличия кнопки 'Профиль'
         return profileButton.isDisplayed();
     }
 
-    public void waitLoadPage() {
+    public void waitLoadPage() { //ожидание загрузки страницы
         profileButton.shouldBe(Condition.visible);
     }
 }

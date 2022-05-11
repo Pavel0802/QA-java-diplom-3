@@ -28,7 +28,6 @@ public class RecoverPasswordPage {
     public LogInPage clickLogInButton() { //Нажатие кнопки "Войти"
         loginButton.click();
         return page(LogInPage.class);
-            }
-
+    }
 
 }

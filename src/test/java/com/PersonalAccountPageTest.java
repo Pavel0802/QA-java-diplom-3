@@ -3,6 +3,8 @@ package com;
 import com.pageObject.LogInPage;
 import com.pageObject.MainPage;
 import com.pageObject.ProfilePage;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,6 +37,11 @@ public class PersonalAccountPageTest {
         mainPage = open(MainPage.URL, MainPage.class);
         logInPage = page(LogInPage.class);
         profilePage = page(ProfilePage.class);
+        mainPage.clickPersonalAccountButton(); //Переход в личный кабинет
+        logInPage.loginUser(email, password) //авторизация пользователя
+                .waitLoad()
+                .clickPersonalAccountButton(); //Переход в личный кабинет авторизированного пользователя
+        profilePage.waitLoadPage(); //ожидание загрузки страницы
     }
 
     @After
@@ -43,46 +50,34 @@ public class PersonalAccountPageTest {
     }
 
     @Test
+    @DisplayName("Проверка авторизации пользователя через кнопку 'Личный кабинет'")
+    @Description("Тест проверяет возможность авторизации пользователя через кнопку 'Личный кабинет' и проверка авторизации путем входа на страницу профиля")
     public void loginOnPersonalAccountTest() {
-        mainPage.clickPersonalAccountButton(); //Переход в личный кабинет
-        logInPage.loginUser(email, password) //Регистрация пользователя
-                .waitLoad()
-                .clickPersonalAccountButton(); //Переход в личный кабинет авторизированного пользователя
-        profilePage.waitLoadPage();
         Assert.assertTrue("there is no 'Profile' button", profilePage.visibleProfileButton());
     }
 
     @Test
+    @DisplayName("Проверка перехода в Конструктор из страницы профиля")
+    @Description("Тест проверяет возможность перехода в Конструктор из страницы профиля")
     public void clickFromPersonalAccountToConstructorTest() {
-        mainPage.clickPersonalAccountButton(); //Переход в личный кабинет
-        logInPage.loginUser(email, password) //Регистрация пользователя
-                .waitLoad()
-                .clickPersonalAccountButton(); //Переход в личный кабинет авторизированного пользователя
-        profilePage.waitLoadPage();
         mainPage.clickConstructorHeader() //Переход по кнопке 'Конструктор'
                 .waitLoad();
         Assert.assertTrue("there is no 'Place an order' button", mainPage.placeAnOrderButtonIsDisplayed());
     }
 
     @Test
+    @DisplayName("Проверка перехода по нажатию на логотип 'Stellar Burger' из страницы профиля")
+    @Description("Тест проверяет возможность перехода по нажатию на логотип 'Stellar Burger' из страницы профиля")
     public void clickFromPersonalAccountToStellarBurgerHeaderTest() {
-        mainPage.clickPersonalAccountButton(); //Переход в личный кабинет
-        logInPage.loginUser(email, password) //Регистрация пользователя
-                .waitLoad()
-                .clickPersonalAccountButton(); //Переход в личный кабинет авторизированного пользователя
-        profilePage.waitLoadPage();
         mainPage.clickStellarBurgerHeader() //Переход по нажатию на логотип 'Stellar Burger'
                 .waitLoad();
         Assert.assertTrue("there is no 'Place an order' button", mainPage.placeAnOrderButtonIsDisplayed());
     }
 
     @Test
+    @DisplayName("Проверка выхода из профиля пользователя")
+    @Description("Тест проверяет возможность выхода пользователя из профиля")
     public void exitProfileTest() {
-        mainPage.clickPersonalAccountButton(); //Переход в личный кабинет
-        logInPage.loginUser(email, password) //Регистрация пользователя
-                .waitLoad()
-                .clickPersonalAccountButton(); //Переход в личный кабинет авторизированного пользователя
-        profilePage.waitLoadPage();
         //Проверка входа на страницу профиля, путем проверки кнопки 'Профиль'
         Assert.assertTrue("there is no 'Profile' button", profilePage.visibleProfileButton());
         profilePage.exitProfile() //выход из аккаунта

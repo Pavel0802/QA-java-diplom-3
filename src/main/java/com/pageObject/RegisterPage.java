@@ -1,17 +1,13 @@
 package com.pageObject;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 
 public class RegisterPage {
 
-    /*//URL сайта
-    public static final String URL = "https://stellarburgers.nomoreparties.site/register";*/
     //Заголовок Регистрация
     @FindBy(how = How.XPATH, using = "//h2[text()='Регистрация']")
     private SelenideElement registerHeader;
@@ -27,9 +23,6 @@ public class RegisterPage {
     //кнопка Зарегистрироваться
     @FindBy(how = How.XPATH, using = "//button[text()='Зарегистрироваться']")
     private SelenideElement authorizationButton;
-
-
-
     //кнопка Войти
     @FindBy(how = How.CSS, using = ".Auth_link__1fOlj[href='/login']")
     private SelenideElement loginButton;
@@ -44,6 +37,7 @@ public class RegisterPage {
     public void setName(String name) { //ввод Имени
         nameField.setValue(name);
     }
+
     public void setEmail(String email) { //ввод email
         emailField.setValue(email);
     }
@@ -61,12 +55,7 @@ public class RegisterPage {
         return page(LogInPage.class);
     }
 
-   /* public SelenideElement getLoginButton() {
-        return loginButton;
-    }*/
-
-
-    public void registrationUser (String name, String email, String password) {
+    public void registrationUser(String name, String email, String password) { //регистрация пользователя
         setName(name);
         setEmail(email);
         setPassword(password);
@@ -76,6 +65,7 @@ public class RegisterPage {
     public boolean errorUserIsAlreadyRegisteredIsDisplayed() { //проверка наличия ошибки уже существующего пользователя
         return errorUserIsAlreadyRegistered.exists();
     }
+
     public boolean errorPasswordIsDisplayed() { //проверка наличия ошибки некорректного пароля
         return errorPassword.isDisplayed();
     }

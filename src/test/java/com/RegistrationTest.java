@@ -3,6 +3,8 @@ package com;
 import com.pageObject.LogInPage;
 import com.pageObject.MainPage;
 import com.pageObject.RegisterPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -49,6 +51,8 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Проверка регистрации нового пользователя")
+    @Description("Тест проверяет возможность регистрации нового пользователя при корректных данных")
     public void testPositiveRegistration() throws InterruptedException {
         registerPage.registrationUser(name, email, password);
         Thread.sleep(1000);//ставим явное ожидание для загрузки ошибки, в случае некорректного ввода данных
@@ -62,6 +66,8 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Проверка выхода ошибки при вводе короткого пароля при регистрации пользователя")
+    @Description("Тест проверяет выход ошибки при вводе короткого пароля при регистрации нового пользователя")
     public void incorrectPasswordTest() {
         password = RandomStringUtils.randomAlphabetic(5);//заменяем пароль на невалидный
         registerPage.registrationUser(name, email, password);

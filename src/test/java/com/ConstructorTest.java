@@ -1,9 +1,10 @@
 package com;
 
 import com.pageObject.MainPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -12,6 +13,8 @@ public class ConstructorTest {
     String textExtract;
 
     @Test
+    @DisplayName("Проверка перехода по элементам конструктора")
+    @Description("Тест проверяет возможность перехода по элементам конструктора при нажатии кнопок 'Булки', 'Соусы', 'Начинки' ")
     public void constructorClickTest() throws InterruptedException {
         mainPage = open(MainPage.URL, MainPage.class); //открываем главную страницу
         textExtract = mainPage.textExtract(); //извлекаем текст активной кнопки конструктора

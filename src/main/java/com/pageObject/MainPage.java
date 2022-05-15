@@ -5,6 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
@@ -67,16 +70,19 @@ public class MainPage {
         return page(MainPage.class);
     }
 
-    public void clickBunButton() { //Нажатие кнопки "Булки"
+    public MainPage clickBunButton() { //Нажатие кнопки "Булки"
         bunButton.click();
+        return page(MainPage.class);
     }
 
-    public void clickSauceButton() { //Нажатие кнопки "Соусы"
+    public MainPage clickSauceButton() { //Нажатие кнопки "Соусы"
         sauceButton.click();
+        return page(MainPage.class);
     }
 
-    public void clickIngredientButton() { //Нажатие кнопки "Начинки"
+    public MainPage clickIngredientButton() { //Нажатие кнопки "Начинки"
         ingredientButton.click();
+        return page(MainPage.class);
     }
 
     public boolean placeAnOrderButtonIsDisplayed() { //проверка наличия кнопки 'Оформить заказ'
@@ -97,4 +103,36 @@ public class MainPage {
         return textExtract;
     }
 
+    public MainPage waitSauceHeader() {
+        sauceButton.shouldHave(exactText("Соусы"));
+        constructorInputHeader.shouldHave(exactText("Соусы"));
+        return page(MainPage.class);
+    }
+
+    public MainPage waitBunHeader() {
+        bunButton.shouldHave(exactText("Булки"));
+        constructorInputHeader.shouldHave(exactText("Булки"), Duration.ofSeconds(2));
+        return page(MainPage.class);
+    }
+
+    public MainPage waitIngredientHeader() {
+        ingredientButton.shouldHave(exactText("Начинки"));
+        constructorInputHeader.shouldHave(exactText("Начинки"), Duration.ofSeconds(2));
+        return page(MainPage.class);
+    }
+
+    public MainPage scrollBun() {
+        bunHeader.scrollIntoView(true).should(Condition.visible, Duration.ofSeconds(2));
+        return page(MainPage.class);
+    }
+
+    public MainPage scrollSauce() {
+        sauceHeader.scrollIntoView(true).should(Condition.visible, Duration.ofSeconds(2));
+        return page(MainPage.class);
+    }
+
+    public MainPage scrollIngredient() {
+        ingredientHeader.scrollIntoView(true).should(Condition.visible, Duration.ofSeconds(2));
+        return page(MainPage.class);
+    }
 }
